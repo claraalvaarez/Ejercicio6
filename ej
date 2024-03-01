@@ -1,17 +1,48 @@
-public static double deviation(double[] array,int iterations,double average){
-        array[iterations] = Math.pow(array[iterations] - average,2);
-        if(iterations == 0){
-            return Math.sqrt(sumOfElements(array)/array.length);
-        }
-        else{
-            return deviation(array, iterations - 1,average);
+import java.util.Arrays;
+
+public class DesviacionTipicaRecursiva {
+
+    private static double sumOfElements(double[] array, int index) {
+        if (index == 0) {
+            return array[0];
+        } else {
+            return array[index] + sumOfElements(array, index - 1);
         }
     }
 
-    public static double deviation(int[] array){
-        return deviation(Arrays.stream(array).mapToDouble(i -> i).toArray(), array.length,average(array));
+    public static double deviation(double[] array, int iterations, double average) {
+        array[iterations] = Math.pow(array[iterations] - average, 2);
+        if (iterations == 0) {
+            return Math.sqrt(sumOfElements(array, iterations) / array.length);
+        } else {
+            return deviation(array, iterations - 1, average);
+        }
     }
 
-    public static double deviation(double[] array){
-        return deviation(array, array.length - 1, (sumOfElements(array))/(array.length));
+    public static double deviation(int[] array) {
+        // Convertir el arreglo de enteros a un arreglo de números flotantes y calcular la desviación estándar
+        return deviation(Arrays.stream(array).mapToDouble(i -> i).toArray(), array.length - 1, average(array));
     }
+
+    public static double deviation(double[] array) {
+        // Calcular la desviación estándar utilizando la función recursiva
+        return deviation(array, array.length - 1, sumOfElements(array, array.length - 1) / array.length);
+    }
+
+    private static double average(int[] array) {
+        return sumOfElements(array, array.length - 1) / array.length;
+    }
+
+    private static double average(double[] array) {
+        return sumOfElements(array, array.length - 1) / array.length;
+    }
+
+    public static void main(String[] args) {
+        
+        double[] numbers = {2.0, 4.0, 4.0, 4.0, 5.0, 5.0, 7.0, 9.0};
+        int[] numbersInt = {2, 4, 4, 4, 5, 5, 7, 9};
+
+        System.out.println("Desviación típica (double[]): " + deviation(numbers));
+        System.out.println("Desviación típica (int[]): " + deviation(numbersInt));
+    }
+}
