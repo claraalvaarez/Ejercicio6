@@ -1,7 +1,4 @@
 Explicacion ejercicio:
-deviation(double[] array, int iterations, double average)`: Este método recursivo calcula la desviación estándar para números flotantes. Calcula el cuadrado de la diferencia entre cada elemento y el promedio, y almacena el resultado. Luego, devuelve la raíz cuadrada de la suma de estos valores dividida por la longitud.
 
-deviation(int[] array)`: Este método convierte  enteros en un arreglo de números flotantes y luego llama al primer método, la longitud del arreglo y el promedio de los elementos del arreglo.
-
-deviation(double[] array)`: Este método calcula la desviación estándar para números flotantes directamente, llamando al primer método con el arreglo, la longitud y el promedio de los elementos del arreglo.
+El código calcula la desviación estándar de una lista de enteros. Comienza calculando el promedio de los elementos en la lista utilizando un método llamado `avg`. Luego, convierte la lista de enteros en una lista de números flotantes y realiza una serie de operaciones, incluyendo el cálculo de la diferencia al cuadrado entre cada elemento y el promedio. Después, calcula el promedio de estos cuadrados, que representa la varianza. Finalmente, toma la raíz cuadrada de la varianza para obtener la desviación estándar y la devuelve.
 
