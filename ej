@@ -1,48 +1,7 @@
-import java.util.Arrays;
-
-public class DesviacionTipicaRecursiva {
-
-    // Método privado para calcular la suma de los elementos de un arreglo
-    private static double sumOfElements(double[] array, int index) {
-        if (index < 0) {
-            return 0;
-        }
-
-        return array[index] + sumOfElements(array, index - 1);
+static double deviation(List<Integer> list)
+    {
+        double x = avg(list);
+        double average = avgDouble(list.stream().mapToDouble(Integer :: doubleValue).map(e -> Math.pow(e - x, 2)).boxed().collect(Collectors.toList()));
+        return Math.sqrt(average);
+        // return 0;
     }
-
-    // Método privado para calcular el promedio de los elementos de un arreglo
-    private static double average(double[] array) {
-
-        return sumOfElements(array, array.length - 1) / array.length;
-    }
-
-    // Método privado recursivo para calcular la suma de las diferencias al cuadrado
-    private static double sumOfSquaredDifferences(double[] array, double average, int index) {
-
-        if (index < 0) {
-            return 0;
-        }
-
-        double difference = array[index] - average;
-        return Math.pow(difference, 2) + sumOfSquaredDifferences(array, average, index - 1);
-    }
-
-    // Método público para calcular la desviación estándar de un arreglo de números flotantes
-    public static double deviation(double[] array) {
-
-        double average = average(array);
-        double sumOfSquaredDiffs = sumOfSquaredDifferences(array, average, array.length - 1);
-        return Math.sqrt(sumOfSquaredDiffs / array.length);
-    }
-
-    // Método público para calcular la desviación estándar de un arreglo de números enteros
-    public static double deviation(int[] array) {
-
-        // Convertir el arreglo de enteros a un arreglo de números flotantes
-        double[] doubleArray = Arrays.stream(array).asDoubleStream().toArray();
-
-        // Llamar al método de desviación estándar para el arreglo de números flotantes
-        return deviation(doubleArray);
-    }
-}
