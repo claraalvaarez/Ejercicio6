@@ -1,0 +1,17 @@
+public static double deviation(double[] array,int iterations,double average){
+        array[iterations] = Math.pow(array[iterations] - average,2);
+        if(iterations == 0){
+            return Math.sqrt(sumOfElements(array)/array.length);
+        }
+        else{
+            return deviation(array, iterations - 1,average);
+        }
+    }
+
+    public static double deviation(int[] array){
+        return deviation(Arrays.stream(array).mapToDouble(i -> i).toArray(), array.length,average(array));
+    }
+
+    public static double deviation(double[] array){
+        return deviation(array, array.length - 1, (sumOfElements(array))/(array.length));
+    }
